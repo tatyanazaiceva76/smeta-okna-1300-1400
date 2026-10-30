@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Сравните две сметы на окно 1300×1400: состав заказа, включённые работы и доплаты. Неизвестные суммы не становятся нулём. Сохраните заполненный лист в HTML или распечатайте.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="robots" content="index,follow">
+  <meta name="google-site-verification" content="fxav4NFuUbsVKkkGCwAQyVzlPy7XdI-itFY_XiKmodE" />
+  <link rel="canonical" href="https://tatyanazaiceva76.github.io/smeta-okna-1300-1400/">
+  <link rel="stylesheet" href="./style.css">
+  <title>Смета на окно 1300×1400 — сравнить два предложения по составу</title>
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">Лист сравнения · без заявки и регистрации</p>
+    <h1>Смета на окно 1300×1400: что входит в цену?</h1>
+    <p class="intro">Перенесите суммы из двух предложений. Лист отделит включённые работы от доплат и покажет, какие позиции ещё нужно уточнить.</p>
+    <p class="notice">Здесь нет «средней цены» и автоматического выбора подрядчика. Пустая сумма — неизвестна, а не равна нулю. Размер 1300×1400 используется как тема сравнения, не как размер для изготовления.</p>
+  </header>
+
+  <section aria-labelledby="before-title" class="paper">
+    <h2 id="before-title">Сначала приведите предложения к одной задаче</h2>
+    <p>Одних размеров недостаточно. Сверьте, что означает размер в каждой смете, число окон, схему открывания, профиль, стеклопакет и фурнитуру. Не переносите размер проёма в заказ как размер рамы: финальный замер и спецификацию согласуют с исполнителем.</p>
+    <ol>
+      <li>Исходная сумма — уже записанная цена <strong>всего одинакового заказа</strong>, а не цена за м² или за одно из нескольких окон.</li>
+      <li>«В исходной сумме» означает, что работа уже учтена. Повторно прибавлять её не нужно.</li>
+      <li>«Доплата» — только сумма сверх исходной цены за весь заказ. Если её ещё не назвали, оставьте поле пустым.</li>
+      <li>«Не требуется» выбирайте только осознанно. Это не то же самое, что «не знаю».</li>
+    </ol>
+    <p>Лист не проверяет качество окна, исполнителя или соответствие монтажа нормам и не заменяет письменную смету.</p>
+  </section>
+
+  <section aria-labelledby="worksheet-title" class="paper">
+    <h2 id="worksheet-title">Заполните два предложения</h2>
+    <p class="muted">Только суммы в рублях, до двух знаков после запятой. Данные остаются в этой вкладке; после обновления страницы ввод пропадёт. Не добавляйте телефон, адрес или другие личные сведения.</p>
+    <div class="actions no-print">
+      <button type="button" id="example">Заполнить учебный пример</button>
+      <button type="button" id="reset" class="quiet">Очистить лист</button>
+    </div>
+    <p id="example-note" class="example-note" hidden>Учебные цифры вымышлены. Это не предложение продавца и не рыночные цены.</p>
+    <form id="quotes" autocomplete="off">
+      <div class="quote-grid">
+        <section class="quote" aria-labelledby="a-title">
+          <h3 id="a-title">Предложение A</h3>
+          <label>Отметка A — например, номер сметы<input id="a-ref" maxlength="80" type="text"></label>
+          <label>Исходная сумма A за весь заказ, ₽<input id="a-base" inputmode="decimal" type="text" placeholder="Не указана" aria-describedby="money-help"></label>
+          <div id="a-items"></div>
+          <output id="a-summary" aria-live="polite"></output>
+        </section>
+        <section class="quote" aria-labelledby="b-title">
+          <h3 id="b-title">Предложение B</h3>
+          <label>Отметка B — например, номер сметы<input id="b-ref" maxlength="80" type="text"></label>
+          <label>Исходная сумма B за весь заказ, ₽<input id="b-base" inputmode="decimal" type="text" placeholder="Не указана" aria-describedby="money-help"></label>
+          <div id="b-items"></div>
+          <output id="b-summary" aria-live="polite"></output>
+        </section>
+      </div>
+      <p id="money-help" class="muted">Например: 12345,67 или 12 345,67. Знак ₽ вводить не нужно. Если сумма уже включает доплату, пометьте её «В исходной сумме».</p>
+      <label class="confirm"><input id="same-scope" type="checkbox"> Я сверил(а) одинаковые размеры, число окон, комплектацию и объём работ в обеих сметах</label>
+      <output id="comparison" class="comparison" aria-live="polite"></output>
+      <div class="actions no-print">
+        <button type="button" id="download">Скачать заполненный лист HTML</button>
+        <button type="button" id="print" class="quiet">Распечатать</button>
+      </div>
+      <p id="download-status" role="status"></p>
+    </form>
+    <noscript><p>Для интерактивного сравнения и скачивания нужен JavaScript. Текстовый список ниже можно использовать без него.</p></noscript>
+  </section>
+
+  <section class="paper" aria-labelledby="questions-title">
+    <h2 id="questions-title">Что уточнить, если в смете написано только «под ключ»</h2>
+    <ul>
+      <li>Как описан оконный блок: размеры, профильная система, стеклопакет, фурнитура и открывание?</li>
+      <li>Включены ли замер и монтаж, демонтаж старой конструкции, подоконник, отлив и отделка откосов?</li>
+      <li>Входят ли сетки, доставка, подъём, вынос и вывоз мусора? Есть ли другие обязательные доплаты?</li>
+      <li>Все ли суммы относятся к одному и тому же количеству окон? Учтены ли скидки и применимые к предложению налоги в записанной итоговой сумме?</li>
+      <li>Какие работы и суммы окончательны, а какие уточнят после замера? До какой даты действует предложение?</li>
+    </ul>
+    <p>Не складывайте исходную сумму с её же расшифровкой: строка «монтаж 2000» может уже входить в итог. Сначала уточните это у составителя сметы.</p>
+  </section>
+
+  <section class="paper" aria-labelledby="sources-title">
+    <h2 id="sources-title">Почему состав важнее одинакового размера</h2>
+    <p>Производитель VEKA перечисляет несколько составляющих цены и отдельно обсуждает работы и предварительный замер. Это объясняет, почему один размер не определяет итоговую стоимость. <a href="https://www.veka.ru/select-help/articles/mozhno-li-sekonomit-na-plastikovykh-oknakh" rel="noreferrer">Разъяснение VEKA</a>.</p>
+    <p>В текущем прайсе «Окна ТОП» часть отделки и дополнительных работ вынесена за пределы заявленного комплекта. Это пример состава конкретного предложения, не универсальное правило для всех продавцов. <a href="https://okna.top/czeny-na-plastikovye-okna/" rel="noreferrer">Состав предложения в прайсе «Окна ТОП»</a>.</p>
+    <p class="muted">Источники просмотрены 30 октября 2026 года. Их цены и рекламные обещания не используются в расчёте. Этот независимый лист не связан с указанными компаниями.</p>
+    <p><a href="https://okna-pvh-online.ru/kalkulyator/standartnoe-okno-1300-1400/">Исходная тема: калькулятор стандартного окна 1300×1400</a>. Там используется ориентировочная модель; здесь учитываются только введённые вами суммы из предложений.</p>
+  </section>
+  <footer>Оригинальный вспомогательный лист сравнения. Без формы заявки, аналитики, загрузки файлов или передачи введённых сумм на сервер.</footer>
+</main>
+<script type="module" src="./app.mjs"></script>
+</body>
+</html>
